@@ -1,0 +1,45 @@
+<div class="container">
+    <form [formGroup]="CourseForm" (ngSubmit)="this[EventValue]()">
+        <h3>Streamer - Cursos</h3>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <td>Nome do Curso</td>
+                    <td>
+                        <input type="hidden" formControlName="id">
+                        <input type="text" formControlName="name">
+                        <div *ngIf="submitted && CourseForm.controls.name.errors" class="text-danger">
+                            <div *ngIf="CourseForm.controls.name.errors.required">O nome é obrigatório</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">{{EventValueString}}</button>
+                            <button type="button" (click)="resetForm()" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Projetos</td>
+                    <td>Editar</td>
+                    <td>Deletar</td>
+                </tr>
+                <tr *ngFor="let d of data">
+                    <td>{{d.id}}</td>
+                    <td>{{d.name}}</td>
+                    <td><a /*(click)="deleteData(d.id)" */ class="btn btn-info">Ver</a></td>
+                    <td><a (click)="editData(d)" class="btn btn-warning">Editar</a></td>
+                    <td><a (click)="deleteData(d.id)" class="btn btn-danger">Deletar</a></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
