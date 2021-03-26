@@ -4,7 +4,7 @@ import { HttpClient,HttpHeaders }    from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class CourseService {
   
   readonly rootURL = 'https://localhost:5001/api';
 
