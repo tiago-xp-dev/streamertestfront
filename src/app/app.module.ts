@@ -5,12 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
-import { HttpClientModule }    from '@angular/common/http';  
-import { AppService } from './app.service';  
+import { HttpClientModule }    from '@angular/common/http';
+import { ProjectComponent } from './project/project.component';
+import { CourseComponent } from './course/course.component';  
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,7 @@ import { AppService } from './app.service';
     ReactiveFormsModule,  
     HttpClientModule  
   ],
-  providers: [AppService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
