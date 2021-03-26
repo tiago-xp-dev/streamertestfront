@@ -1,0 +1,103 @@
+<div class="container">
+    <form [formGroup]="ProjectForm" (ngSubmit)="this[EventValue]()">
+        <h3>Streamer - Projetos</h3>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <td>Curso</td>
+                    <td>
+                        <select formControlName="courseId">
+                            <option *ngFor="let dc of dataCourses" value={{dc.id}} (click)="getByCourseId(dc.id)">{{dc.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && ProjectForm.controls.courseId.errors" class="text-danger">
+                            <div *ngIf="ProjectForm.controls.courseId.errors.required">O Curso é obrigatório</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nome</td>
+                    <td>
+                        <input type="hidden" formControlName="id">
+                        <input type="text" formControlName="name">
+                        <div *ngIf="submitted && ProjectForm.controls.name.errors" class="text-danger">
+                            <div *ngIf="ProjectForm.controls.name.errors.required">O nome é obrigatório</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>O que é</td>
+                    <td>
+                        <textarea formControlName="what"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>O que será feito</td>
+                    <td>
+                        <textarea formControlName="whatWillWeDo"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>O porquê</td>
+                    <td>
+                        <textarea formControlName="why"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Imagem (Link)</td>
+                    <td>
+                        <input type="text" formControlName="image">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <select formControlName="projectStatus">
+                            <option value="0">Em Desenvolvimento</option>
+                            <option value="1">Publicado</option>
+                        </select>
+                        <div *ngIf="submitted && ProjectForm.controls.projectStatus.errors" class="text-danger">
+                            <div *ngIf="ProjectForm.controls.projectStatus.errors.required">O Status é obrigatório</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">{{EventValueString}}</button>
+                            <button type="button" (click)="resetForm()" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="text-info">
+                <p>*Selecione um Curso no formulário para visualizar os Projetos.</p>
+            </div>
+            <table class="table table-striped text-center">
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>O que é</td>
+                    <td>O que será feito</td>
+                    <td>O porquê</td>
+                    <td>Status</td>
+                    <td>Imagem</td>
+                    <td>Editar</td>
+                    <td>Deletar</td>
+                </tr>
+                <tr *ngFor="let d of data">
+                    <td>{{d.id}}</td>
+                    <td>{{d.name}}</td>
+                    <td>{{d.what}}</td>
+                    <td>{{d.whatWillWeDo}}</td>
+                    <td>{{d.why}}</td>
+                    <td>{{d.projectStatus}}</td>
+                    <td><img height="120px" width="120px" src="{{d.image}}"></td>
+                    <td><a (click)="editData(d)" class="btn btn-warning">Editar</a></td>
+                    <td><a (click)="deleteData(d.id)" class="btn btn-danger">Deletar</a></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
